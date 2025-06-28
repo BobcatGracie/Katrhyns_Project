@@ -1,0 +1,35 @@
+class AccountManager:
+    """Manages the overall 'bank' account. Defs include balance, account acctivitey, access to the CSV, and updating CSV."""
+    def __init__(self,initial_balance,csv_file):
+
+
+    def load_file(self):
+        """Loads data from the CSV file"""
+
+
+    def save(self):
+        """Saves the current data and activitey"""
+
+    def update_balance(self):
+        """Updates the current balance based on user activity, after initial balance. Should update after loading"""
+
+    def add_activety(self, type, catagory, amount):
+        """Adds new activety and will sort what type of activety it is(refund or charge), catagory(grocery/transportation), and the amount."""
+
+    def purchase(self, amount, catagory):
+        """Adds purchase activety ans subtracts from the balance. Hopefully warns & denies the purchase if the user doesn't have the balance to cover it,"""
+
+    def get_balance(self):
+        """Gives user their current balance."""
+
+    def get_activety(self):
+        """Gives user their activety."""
+
+    def plot(self):
+        """Plots the balance over time."""
+        #Bar chart or graph.....lookup what is most popular
+
+#need a def for handling str + floats for consistency
+#maybe defs for UI(menu, tables, charts, viewing activety)
+def main():
+    """Runs the Account Manager for users to input data."""
