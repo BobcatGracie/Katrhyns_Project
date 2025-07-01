@@ -1,35 +1,56 @@
+CSV_FILE = 'Transactions.csv'
+INITIAL_BALANCE = 100.0
+
+
 class AccountManager:
-    """Manages the overall 'bank' account. Defs include balance, account acctivitey, access to the CSV, and updating CSV."""
-    def __init__(self,initial_balance,csv_file):
+    """Manages the overall 'bank' account. Defs include balance, 
+    account activity, access to the CSV, and updating CSV."""
+    def __init__(self,initial_balance = INITIAL_BALANCE,csv_file = CSV_FILE):
+        self.csv_file = csv_file
+        self.initial_balance = initial_balance
 
 
     def load_file(self):
         """Loads data from the CSV file"""
+        if os.path.exists(self.csv_file):
+            try:
+                df = pd.read(self.csv_file)
+                print(f"File exists as {self.csv_file}")
+                return df
+            except pd.errors.EmptyDataError:        #I did look this except up on google but it seems to do what I'm wanting
+                print("Error: The file is empty.")
+        else:
+            print(f"{self.csv_file} File not found")
+            ####DO i need a return or can I keep it ending with the print?
 
 
     def save(self):
-        """Saves the current data and activitey"""
+        """Saves the current data and activity"""
+        #Not sure how to do this
 
     def update_balance(self):
-        """Updates the current balance based on user activity, after initial balance. Should update after loading"""
+        """Updates the current balance based on user activity, 
+        after initial balance. Should update after loading"""
 
-    def add_activety(self, type, catagory, amount):
-        """Adds new activety and will sort what type of activety it is(refund or charge), catagory(grocery/transportation), and the amount."""
+    def add_activity(self, type, catagory, amount):
+        """Adds new activity and will sort what type of activity it is(refund or charge),
+        catagory(grocery/transportation), and the amount."""
 
     def purchase(self, amount, catagory):
-        """Adds purchase activety ans subtracts from the balance. Hopefully warns & denies the purchase if the user doesn't have the balance to cover it,"""
+        """Adds purchase activity ans subtracts from the balance. Hopefully warns & 
+        denies the purchase if the user doesn't have the balance to cover it,"""
 
     def get_balance(self):
         """Gives user their current balance."""
 
-    def get_activety(self):
-        """Gives user their activety."""
+    def get_activity(self):
+        """Gives user their activity."""
 
     def plot(self):
         """Plots the balance over time."""
         #Bar chart or graph.....lookup what is most popular
 
 #need a def for handling str + floats for consistency
-#maybe defs for UI(menu, tables, charts, viewing activety)
+#maybe defs for UI(menu, tables, charts, viewing activity)
 def main():
     """Runs the Account Manager for users to input data."""
