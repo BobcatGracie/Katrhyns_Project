@@ -2,9 +2,9 @@ ________________________________________________________________________________
 #####TO DO####
 #Import MatplotLib/Learn
 #general spellcheck
-#import flask
-#create HTML Page
-#Add HTML with Flask
+
+
+
 
 ________________________________________________________________________________
 ###COMPLETED###
@@ -12,3 +12,6 @@ ________________________________________________________________________________
 #Look up the correct spelling of activety and update defs
 #Import Pandas
 #Import OS
+#Add HTML with Flask
+#create HTML Page
+#import flask
