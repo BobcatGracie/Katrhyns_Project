@@ -2,6 +2,9 @@ ________________________________________________________________________________
 #####TO DO####
 #Import MatplotLib/Learn
 #general spellcheck
+#import flask
+#create HTML Page
+#Add HTML with Flask
 
 ________________________________________________________________________________
 ###COMPLETED###

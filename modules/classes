@@ -19,14 +19,16 @@ class AccountManager:
                 return df
             except pd.errors.EmptyDataError:        #I did look this except up on google but it seems to do what I'm wanting
                 print("Error: The file is empty.")
+                return pd.DataFrame()
         else:
             print(f"{self.csv_file} File not found")
-            ####DO i need a return or can I keep it ending with the print?
+            return pd.DataFrame()
 
 
     def save(self):
         """Saves the current data and activity"""
-        #Not sure how to do this
+        #Not sure if this is right???
+        self.save.to_csv(self.csv_file, index=False)
 
     def update_balance(self):
         """Updates the current balance based on user activity, 
