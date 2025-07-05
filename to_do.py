@@ -2,7 +2,7 @@ ________________________________________________________________________________
 #####TO DO####
 #Import MatplotLib/Learn
 #general spellcheck
-
+#troubleshoot importing my classes
 
 
 
