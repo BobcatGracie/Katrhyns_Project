@@ -1,9 +1,9 @@
-import tkinter
+import csv
 import os
 import pandas as pd
 
 #Copied and edited from HCI 574 lecture 36
-from flask import Flask, render_template # now also import the render template class
+from flask import Flask, render_template, request, redirect, url_for # now also import the render template class
 app = Flask(__name__)
 
 @app.route("/")  
@@ -61,11 +61,26 @@ class AccountManager:
         current_balance = self.initial_balance
         #figure out how add the purhcase amount rows from CSV file
         
-
+    @app.route('/add_transaction', methods=['POST'])
     def add_activity(self, type, catagory, amount):
         """Adds new activity and will sort what type of activity it is(refund or charge),
         catagory(grocery/transportation), and the amount."""
-        #Figure put how to add a text box to add new purchases
+        if request.method =='POST':
+            transaction_id = request.form['transaction_id']
+            item = request.form['item']
+            amount = request.form['amount']
+            date = request.form['date']
+
+            #Append data to CSV file
+            #I got this from the internet
+            try:
+                with open(CSV_FILE, 'a', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow([transaction_id, item, amount, date])
+
+                return render_template('index.html', message="Transaction added successfully!", message_type="success")
+            except Exception as e:
+                return render_template('index.html', message=f"Error adding transaction: {e}", message_type="error")
 
     def purchase(self, amount, catagory):
         """Adds purchase activity ans subtracts from the balance. Hopefully warns & 
