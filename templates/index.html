@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Landing Page }}</title>
+</head>
+<body>
+    <div>
+        <h1>Welcome!</h1>
+         <p>This is a simple Flask application test.</p>
+    </div>
+    <div>
+        <h2>Add a New Transaction</h2>
+        <form action="/add_transaction" method="post">
+            <label for="transaction_id">Transaction ID:</label>
+            <input type="text" id="transaction_id" name="transaction_id" required>
+
+            <label for="item">Item Purchased:</label>
+            <input type="text" id="item" name="item" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01" required>
+
+            <label for="date">Date (MM-DD):</label>
+            <input type="date" id="date" name="date" required>
+
+            <input type="submit" value="Add Transaction">
+        </form>
+    </div>
+
+</body>
+</html>
+

@@ -1,7 +1,6 @@
 import tkinter
 import os
 import pandas as pd
-import my_classes
 
 #Copied and edited from HCI 574 lecture 36
 from flask import Flask, render_template # now also import the render template class
@@ -25,21 +24,24 @@ class AccountManager:
     def __init__(self,initial_balance = INITIAL_BALANCE,csv_file = CSV_FILE):
             self.csv_file = csv_file
             self.initial_balance = initial_balance
-            self.df = self.load_file
+            self.activities = self._load_activities()
+            self.df = self.load_file()
 
 
     def load_file(self):
             """Loads data from the CSV file"""
             if os.path.exists(self.csv_file):
                 try:
-                    df = pd.read(self.csv_file)
+                    df = pd.read_csv(self.csv_file)
                     print(f"File exists as {self.csv_file}")
                     return df
                 except pd.errors.EmptyDataError:        #I did look this except up on google but it seems to do what I'm wanting
                     print("Error: The file is empty.")
+                    return None
             else:
                 print(f"{self.csv_file} File not found")
                 return None
+            
     def __str__(self):
          s = (f"Database: {self.csv_file}, Initial Balance: {self.initial_balance}\n")
          if self.df is not None:
@@ -51,19 +53,24 @@ class AccountManager:
     def save(self):
         """Saves the current data and activity"""
         #Not sure if this is right???
-        self.save.to_csv(self.csv_file, index=False)
+        self.activities.to_csv(self.csv_file, index=False)
 
     def update_balance(self):
         """Updates the current balance based on user activity, 
         after initial balance. Should update after loading"""
+        current_balance = self.initial_balance
+        #figure out how add the purhcase amount rows from CSV file
+        
 
     def add_activity(self, type, catagory, amount):
         """Adds new activity and will sort what type of activity it is(refund or charge),
         catagory(grocery/transportation), and the amount."""
+        #Figure put how to add a text box to add new purchases
 
     def purchase(self, amount, catagory):
         """Adds purchase activity ans subtracts from the balance. Hopefully warns & 
         denies the purchase if the user doesn't have the balance to cover it,"""
+
 
     def get_balance(self):
         """Gives user their current balance."""
