@@ -66,8 +66,8 @@ class AccountManager:
         """Adds new activity and will sort what type of activity it is(refund or charge),
         catagory(grocery/transportation), and the amount."""
         if request.method =='POST':
-            transaction_id = request.form['transaction_id']
-            item = request.form['item']
+            transaction_type = request.form['transaction_type']
+            store = request.form['store']
             amount = request.form['amount']
             date = request.form['date']
 
@@ -76,7 +76,7 @@ class AccountManager:
             try:
                 with open(CSV_FILE, 'a', newline='') as file:
                     writer = csv.writer(file)
-                    writer.writerow([transaction_id, item, amount, date])
+                    writer.writerow([transaction_type, item, amount, date])
 
                 return render_template('index.html', message="Transaction added successfully!", message_type="success")
             except Exception as e:
