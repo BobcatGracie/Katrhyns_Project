@@ -1,4 +1,4 @@
-Date,Description,Amount,Type,Category
+Date,Buisness Establishment,Amount,Type,Category
 4/9/2025,JACKS,29,Purchase,Food/Groceries
 4/8/2025,WAL-MART SUPERCENTER,8.78,Purchase,Miscellaneous
 4/5/2025,AMC THEATERS,35.78,Purchase,Entertainment
@@ -15,3 +15,4 @@ Date,Description,Amount,Type,Category
 3/9/2025,GRUBHUB,23.24,Purchase,Food/Groceries
 3/8/2025,MARATHON,12.93,Purchase,Transportation
 3/8/2025,PAYPAL*EBAY,63.86,Purchase,Miscellaneous
+3/8/2025,UberEats,10,Purchase,Bills

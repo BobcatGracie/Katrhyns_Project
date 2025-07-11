@@ -2,7 +2,7 @@ ________________________________________________________________________________
 #####TO DO####
 #Import MatplotLib/Learn
 #general spellcheck
-
+#add catagory in HTML and update CSV for catagories
 
 
 ________________________________________________________________________________

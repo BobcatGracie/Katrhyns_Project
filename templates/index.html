@@ -11,6 +11,11 @@
          <p>This is a simple Flask application test.</p>
     </div>
     <div>
+        <p>Current Balance:</p>
+        <p>${{ "%.2f" | format(get_balance) }}</p>
+    </div>
+
+    <div>
         <h2>Add a New Transaction</h2>
         <form action="/add_transaction" method="post">
             <label for="transaction_type">Transaction Type:</label>
@@ -29,6 +34,15 @@
             <input type="date" id="date" name="date" required>
 
             <input type="submit" value="Add Transaction">
+
+            <label for="catagory">Catagory:</label>
+            <select id="catagory" name="catagory" required>
+                <option value="Food/Groceries">Purchase</option>
+                <option value="Miscellaneous">Refund</option>
+                <option value="Entertainment">Purchase</option>
+                <option value="Transportation">Refund</option>
+                <option value="Bills">Refund</option>
+            </select>
         </form>
     </div>
 
