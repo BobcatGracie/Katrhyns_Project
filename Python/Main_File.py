@@ -92,13 +92,13 @@ def add_activity():
     """Adds new activity and will sort what type of activity it is(refund or charge),
     catagory(grocery/transportation), and the amount."""
     transaction_type = request.form['transaction_type']
-    store = request.form['store']
+    business_establishment = request.form['business_establishment']
     amount = request.form['amount']
     date = request.form['date']
 
     new_transaction = { # can be in any order but must match the Above CSV header
         'Type': transaction_type,
-        'Description': store,
+        'Description': business_establishment,
         'Amount': float(amount),
         'Date': date,  # BTW has different format that Date in csv file
         'Category': "yes"   
