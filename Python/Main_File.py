@@ -54,8 +54,14 @@ class AccountManager:
 
     def get_balance(self):
         """Gives user their current balance."""
+        current_balance = self.initial_balance
+        if not self.df.empty:
+            purchases = self.df[self.df['Type'] == 'Purchase']['Amount'].sum()
+            refunds = self.df[self.df['Type'] == 'Refund']['Amount'].sum()
+            current_balance = self.initial_balance - purchases + refunds
+        return current_balance
 
-    def get_activity(self):
+    #def get_activity(self):
         """Gives user their activity."""
 
     def plot(self):
@@ -82,8 +88,9 @@ accman = AccountManager()
 
 @app.route("/")  
 def index():
+    current_balance = accman.get_balance()
     plot_path = accman.plot()
-    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path) # title will be inlined in {{ title }}
+    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
     return html_str  # give it to the browser to display the inline page
 
@@ -115,7 +122,7 @@ def add_activity():
 
     return redirect(url_for('index'))
 
-@app.route('/purchase', methods=['POST']))
+@app.route('/purchase', methods=['POST'])
 def purchase(self, amount, catagory):
         """Adds purchase activity and subtracts from the balance. Hopefully warns & 
         denies the purchase if the user doesn't have the balance to cover it,"""
