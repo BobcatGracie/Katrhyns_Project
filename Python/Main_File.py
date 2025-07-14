@@ -82,33 +82,38 @@ accman = AccountManager()
 
 @app.route("/")  
 def index():
-    html_str = render_template('index.html', title="Landing Page") # title will be inlined in {{ title }}
+    plot_path = accman.plot()
+    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
     return html_str  # give it to the browser to display the inline page
 
-app.run(debug=False, port=8080) 
-
-
 @app.route('/add_transaction', methods=['POST'])
-def add_activity(self, type, catagory, amount):
-        """Adds new activity and will sort what type of activity it is(refund or charge),
-        catagory(grocery/transportation), and the amount."""
-        if request.method =='POST':
-            transaction_type = request.form['transaction_type']
-            store = request.form['store']
-            amount = request.form['amount']
-            date = request.form['date']
+def add_activity():
+    """Adds new activity and will sort what type of activity it is(refund or charge),
+    catagory(grocery/transportation), and the amount."""
+    transaction_type = request.form['transaction_type']
+    store = request.form['store']
+    amount = request.form['amount']
+    date = request.form['date']
 
-            #Append data to CSV file
-            #I got this from the internet
-            try:
-                with open(CSV_FILE, 'a', newline='') as file:
-                    writer = csv.writer(file)
-                    writer.writerow([transaction_type, store, amount, date])
+    new_transaction = { # can be in any order but must match the Above CSV header
+        'Type': transaction_type,
+        'Description': store,
+        'Amount': float(amount),
+        'Date': date,  # BTW has different format that Date in csv file
+        'Category': "yes"   
+    }   
+    print(accman.df)
+    # "add" new row at the bottom of the DataFrame
+    accman.df = pd.concat([accman.df, pd.DataFrame([new_transaction])], ignore_index=True)
+    print("\n\n", accman.df)
+    # save the updated DataFrame to the CSV file
+    accman.df.to_csv(accman.csv_file, index=False)
 
-                return render_template('index.html', message="Transaction added successfully!", message_type="success")
-            except Exception as e:
-                return render_template('index.html', message=f"Error adding transaction: {e}", message_type="error")
+    # update the balance
+    accman.update_balance()
+
+    return redirect(url_for('index'))
 
 @app.route('/purchase', methods=['POST']))
 def purchase(self, amount, catagory):
@@ -133,5 +138,5 @@ def purchase(self, amount, catagory):
         self._save_activities()
         return True, f"Purchased ${amount:.2f} ({category}). New balance: ${self.balance:.2f}"
 
-#need a def for handling str + floats for consistency
-#maybe defs for UI(menu, tables, charts, viewing activity)
+
+app.run(debug=False, port=8080) 
