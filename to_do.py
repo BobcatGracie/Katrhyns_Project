@@ -3,7 +3,7 @@ ________________________________________________________________________________
 #Import MatplotLib/Learn
 #general spellcheck
 #add catagory in HTML and update CSV for catagories
-
+#In HTML move the current balance number to the right of "Current Balance:"
 
 ________________________________________________________________________________
 ###COMPLETED###

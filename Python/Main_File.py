@@ -58,7 +58,7 @@ class AccountManager:
         if not self.df.empty:
             purchases = self.df[self.df['Type'] == 'Purchase']['Amount'].sum()
             refunds = self.df[self.df['Type'] == 'Refund']['Amount'].sum()
-            current_balance = self.initial_balance - purchases + refunds
+            current_balance = self.initial_balance + purchases - refunds
         return current_balance
 
     #def get_activity(self):
