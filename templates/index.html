@@ -45,6 +45,10 @@
         </form>
     </div>
     <div>
+        <h2>Balance Over Time</h2>
+        <img src="{{ url_for('static', filename='plot.png') }}" alt="Balance Over Time Plot">
+    </div>
+    <div>
         <h2>Account Activity</h2>
         <p>Recorded Transactions:</p>
         {% if transactions %}
