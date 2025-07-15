@@ -15,7 +15,7 @@ class AccountManager:
     def __init__(self,initial_balance = INITIAL_BALANCE,csv_file = CSV_FILE):
             self.csv_file = csv_file
             self.initial_balance = initial_balance
-            #self.activities = self._load_activities()
+            self.activities = self.load_activities()
             self.df = self.load_file()
 
 
@@ -61,8 +61,9 @@ class AccountManager:
             current_balance = self.initial_balance + purchases - refunds
         return current_balance
 
-    #def get_activity(self):
+    def get_activity(self):
         """Gives user their activity."""
+        return self.df.to_dict(orient='records')
 
     def plot(self):
         """Plots the balance over time."""
@@ -90,7 +91,8 @@ accman = AccountManager()
 def index():
     current_balance = accman.get_balance()
     plot_path = accman.plot()
-    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance) # title will be inlined in {{ title }}
+    transactions = accman.get_activity()
+    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance, transactions=transactions) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
     return html_str  # give it to the browser to display the inline page
 
@@ -144,6 +146,5 @@ def purchase(self, amount, catagory):
         self.activities.loc[self.activities.index[-1], 'BalanceAfter'] = self.balance
         self._save_activities()
         return True, f"Purchased ${amount:.2f} ({category}). New balance: ${self.balance:.2f}"
-
 
 app.run(debug=False, port=8080) 

@@ -11,8 +11,7 @@
          <p>This is a simple Flask application test.</p>
     </div>
     <div>
-        <p>Current Balance:</p>
-        <p>${{ "%.2f" | format(balance) }}</p>
+        <p>Current Balance: ${{ "%.2f" | format(balance) }}</p>
     </div>
 
     <div>
@@ -45,7 +44,36 @@
             <input type="submit" value="Add Transaction">
         </form>
     </div>
-
+    <div>
+        <h2>Account Activity</h2>
+        <p>Recorded Transactions:</p>
+        {% if transactions %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Business Establishment</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Catagory</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.Date }}</td>
+                    <td>{{ transaction['Business Establishment'] }}</td>
+                    <td>${{ "%.2f" | format(transaction.Amount) }}</td>
+                    <td>{{ transaction.Type }}</td>
+                    <td>{{ transaction.Category }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No transactions to display yet.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
 
