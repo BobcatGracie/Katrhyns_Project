@@ -15,7 +15,6 @@ class AccountManager:
     def __init__(self,initial_balance = INITIAL_BALANCE,csv_file = CSV_FILE):
             self.csv_file = csv_file
             self.initial_balance = initial_balance
-            self.activities = self.load_activities()
             self.df = self.load_file()
 
 
@@ -45,7 +44,7 @@ class AccountManager:
         after initial balance. Should update after loading"""
         current_balance = self.initial_balance
         #figure out how add the purhcase amount rows from CSV file
-        for _, row in self.activities.iterrows():
+        for _, row in self.df.iterrows():
             if row['Type'] =='Purchase':
                 current_balance -=row['Amount']
             elif row['Type'] =='Refund':
@@ -143,7 +142,7 @@ def purchase(self, amount, catagory):
 
         #This part I got from Google Gemini. It records a purchase after the balance is updated
         self._add_activity('Purchase', category, amount)
-        self.activities.loc[self.activities.index[-1], 'BalanceAfter'] = self.balance
+        self.df.loc[self.df.index[-1], 'BalanceAfter'] = self.balance
         self._save_activities()
         return True, f"Purchased ${amount:.2f} ({category}). New balance: ${self.balance:.2f}"
 

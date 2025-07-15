@@ -1,9 +1,9 @@
 ________________________________________________________________________________
 #####TO DO####
-#Import MatplotLib/Learn
+#Troubleshoot why Business Establishment isnt loading on server
 #general spellcheck
-#add catagory in HTML and update CSV for catagories
-#In HTML move the current balance number to the right of "Current Balance:"
+
+
 
 ________________________________________________________________________________
 ###COMPLETED###
@@ -14,3 +14,5 @@ ________________________________________________________________________________
 #Add HTML with Flask
 #create HTML Page
 #import flask
+#In HTML move the current balance number to the right of "Current Balance:"
+#add catagory in HTML and update CSV for catagories
