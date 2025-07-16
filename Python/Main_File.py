@@ -103,13 +103,14 @@ def add_activity():
     business_establishment = request.form['business_establishment']
     amount = request.form['amount']
     date = request.form['date']
+    catagory = request.form['catagory']
 
     new_transaction = { # can be in any order but must match the Above CSV header
         'Type': transaction_type,
         'Description': business_establishment,
         'Amount': float(amount),
         'Date': date,  # BTW has different format that Date in csv file
-        'Category': "yes"   
+        'Category': catagory 
     }   
     print(accman.df)
     # "add" new row at the bottom of the DataFrame
@@ -123,8 +124,8 @@ def add_activity():
 
     return redirect(url_for('index'))
 
-@app.route('/purchase', methods=['POST'])
-def purchase(self, amount, catagory):
+#@app.route('/purchase', methods=['POST'])
+#def purchase(self, amount, catagory):
         """Adds purchase activity and subtracts from the balance. Hopefully warns & 
         denies the purchase if the user doesn't have the balance to cover it,"""
 

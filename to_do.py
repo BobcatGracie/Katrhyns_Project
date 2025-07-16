@@ -2,8 +2,8 @@ ________________________________________________________________________________
 #####TO DO####
 #Troubleshoot why Business Establishment isnt loading on server
 #general spellcheck
-#See why Catagories is returning as "yes" for new transactions
-#test the refunds
+
+#Change plot to show current balamce instead of purchase amount
 
 
 ________________________________________________________________________________
@@ -18,3 +18,5 @@ ________________________________________________________________________________
 #In HTML move the current balance number to the right of "Current Balance:"
 #add catagory in HTML and update CSV for catagories
 #trhoubleshhoot the Plot Action(Why is it not plotting?)
+#test Refund Function
+#See why Catagories is returning as "yes" for new transactions
