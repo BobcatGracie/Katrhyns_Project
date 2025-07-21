@@ -64,23 +64,60 @@ class AccountManager:
         """Gives user their activity."""
         return self.df.to_dict(orient='records')
 
+    #The plot kept giving me so many errors, so I used google gemini to help me figure out how to plot from your code
+    #Before hand I was recieving so many errors for str being used instead of floats, and it caused the whole app to crash
     def plot(self):
         """Plots the balance over time."""
-        # line plot amount in self.df over time using matplotlib
-        # only plot purchase and color by catagory
-        #Bar chart or graph.....lookup what is most popular
+        if self.df is None or self.df.empty:
+            print("DataFrame is empty, cannot plot.")
+            # Ensure the static/plot.png file is cleared or a placeholder is shown if there's no data to plot.
+            # Return None to indicate no plot was generated.
+            # As a temporary workaround to avoid a broken image, creates an empty plot
+            return 'static/no_data_plot.png' # Or some placeholder image
+
+        #'Date' column is in datetime format for correct chronological plotting.
+        try:
+            self.df['Date'] = pd.to_datetime(self.df['Date'])
+        except Exception as e:
+            print(f"Error converting 'Date' column to datetime: {e}")
+            # Handles cases where date conversion fails (e.g., malformed dates)
+            return 'static/error_plot.png'
+
+        # Sort by date to ensure the plot is chronological
+        plot_df = self.df.sort_values(by='Date').copy()
+
+        # Add a new column for the balance change for each transaction
+        # Purchase amounts are positive, Refunds are negative
+        plot_df['Change'] = plot_df.apply(
+            lambda row: +row['Amount'] if row['Type'] == 'Purchase' else row['Amount'],
+            axis=1
+        )
+        #Calculate cumulative sum and add initial balance
+        plot_df['Cumulative_Balance'] = self.initial_balance + plot_df['Change'].cumsum()
+        
+        # Now plot the Cumulative_Balance over the Date
         plt.figure(figsize=(10, 5))
-        plt.plot(self.df['Date'], self.df['Amount'], marker='o', linestyle='-')
-        plt.title('Balance Over Time')
+        
+        # Check if plot_df is empty after operations (e.g., if only header was present)
+        if plot_df.empty:
+            print("Plot DataFrame is empty after processing, cannot plot.")
+            return 'static/no_data_plot.png' # Placeholder
+        
+        plt.plot(plot_df['Date'], plot_df['Cumulative_Balance'], marker='o', linestyle='-')
         plt.xlabel('Date')
-        plt.ylabel('Amount')
-        plt.xticks(rotation=45)
+        plt.ylabel('Balance ($)')
+        
+        # Format x-axis for dates
+        plt.gcf().autofmt_xdate() # Automatically format date labels
+        
         plt.tight_layout()
-        # CH you will need to figure out how to integrate this with Flask to display the plot in the web app
-        # You could save the plot to a file and then render it in a img tag in the HTML template
-        plot_path = 'static/plot.png'  # Save the plot to a static directory (subfolder in your Flask app, such as templates)       
+        
+        # Save the plot
+        plot_path = 'static/plot.png'
         plt.savefig(plot_path)
         plt.close()
+        
+        return plot_path
 
 
 accman = AccountManager()
@@ -107,7 +144,7 @@ def add_activity():
 
     new_transaction = { # can be in any order but must match the Above CSV header
         'Type': transaction_type,
-        'Description': business_establishment,
+        'Business Establishment': business_establishment,
         'Amount': float(amount),
         'Date': date,  # BTW has different format that Date in csv file
         'Category': catagory 
@@ -124,27 +161,6 @@ def add_activity():
 
     return redirect(url_for('index'))
 
-#@app.route('/purchase', methods=['POST'])
-#def purchase(self, amount, catagory):
-        """Adds purchase activity and subtracts from the balance. Hopefully warns & 
-        denies the purchase if the user doesn't have the balance to cover it,"""
 
-        try:
-            amount = float(request.form['amount'])
-            category = request.form['catagory']
-
-            if self.balance - amount < 0:
-                print("Insufficient funds. Your balance will not cover this transaction.")
-                return False
-        except ValueError:
-            print("Please enter a valid number")
-
-        self.balance -= amount
-
-        #This part I got from Google Gemini. It records a purchase after the balance is updated
-        self._add_activity('Purchase', category, amount)
-        self.df.loc[self.df.index[-1], 'BalanceAfter'] = self.balance
-        self._save_activities()
-        return True, f"Purchased ${amount:.2f} ({category}). New balance: ${self.balance:.2f}"
 
 app.run(debug=False, port=8080) 

@@ -2,8 +2,8 @@ ________________________________________________________________________________
 #####TO DO####
 #Troubleshoot why Business Establishment isnt loading on server
 #general spellcheck
+#Take away time on transaction list
 
-#Change plot to show current balamce instead of purchase amount
 
 
 ________________________________________________________________________________
@@ -20,3 +20,5 @@ ________________________________________________________________________________
 #trhoubleshhoot the Plot Action(Why is it not plotting?)
 #test Refund Function
 #See why Catagories is returning as "yes" for new transactions
+#Change plot to show current balamce instead of purchase amount
+#Troubleshoot Date not working
