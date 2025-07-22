@@ -64,9 +64,10 @@ class AccountManager:
         """Gives user their activity."""
         return self.df.to_dict(orient='records')
 
-    #The plot kept giving me so many errors, so I used google gemini to help me figure out how to plot from your code
+    #The plot kept giving me so many errors, so I used google gemini to help me reformat the structure of plotting from your code
     #Before hand I was recieving so many errors for str being used instead of floats, and it caused the whole app to crash
-    def plot(self):
+    # I also added in the red line for the budget
+    def plot(self, budget_amount = None):
         """Plots the balance over time."""
         if self.df is None or self.df.empty:
             print("DataFrame is empty, cannot plot.")
@@ -84,7 +85,7 @@ class AccountManager:
             return 'static/error_plot.png'
 
         # Sort by date to ensure the plot is chronological
-        plot_df = self.df.sort_values(by='Date').copy()
+        plot_df = self.df.sort_values(by='Date')
 
         # Add a new column for the balance change for each transaction
         # Purchase amounts are positive, Refunds are negative
@@ -107,6 +108,10 @@ class AccountManager:
         plt.xlabel('Date')
         plt.ylabel('Balance ($)')
         
+        #Red budget line
+        if budget_amount is not None:
+            plt.axhline(y=budget_amount, color='red', linestyle='--', label ='Budget')
+
         # Format x-axis for dates
         plt.gcf().autofmt_xdate() # Automatically format date labels
         
@@ -126,9 +131,19 @@ accman = AccountManager()
 @app.route("/")  
 def index():
     current_balance = accman.get_balance()
+    #Added things to get the budget number
+    budget_amount_str = request.args.get('budget_amount')
+    budget_amount = None
+    if budget_amount_str:
+        try:
+            budget_amount = float(budget_amount_str)
+        except ValueError:
+            print("Invalid budget amount recieved")
+
+    plot_url = accman.plot(budget_amount=budget_amount)
     plot_path = accman.plot()
     transactions = accman.get_activity()
-    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance, transactions=transactions) # title will be inlined in {{ title }}
+    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance, transactions=transactions, budget_amount=budget_amount) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
     return html_str  # give it to the browser to display the inline page
 

@@ -8,10 +8,18 @@
 <body>
     <div>
         <h1>Welcome!</h1>
-         <p>This is a simple Flask application test.</p>
     </div>
     <div>
         <p>Current Balance: ${{ "%.2f" | format(balance) }}</p>
+    </div>
+    <div>
+        <h2>Set Your Budget</h2>
+        <form action="/" method="get">
+            <label for="budget_amount">Budget Amount:</label>
+            <input type="number" id="budget_amount" name="budget_amount" step="0.01"
+                value="{{ budget_amount if budget_amount is not none else ''}}"><br>
+            <input type="submit" value="Apply Budget">
+        </form>
     </div>
 
     <div>
