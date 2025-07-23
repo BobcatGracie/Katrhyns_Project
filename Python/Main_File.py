@@ -140,8 +140,7 @@ def index():
         except ValueError:
             print("Invalid budget amount recieved")
 
-    plot_url = accman.plot(budget_amount=budget_amount)
-    plot_path = accman.plot()
+    plot_path = accman.plot(budget_amount=budget_amount)
     transactions = accman.get_activity()
     html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance, transactions=transactions, budget_amount=budget_amount) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
