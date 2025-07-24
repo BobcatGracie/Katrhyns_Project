@@ -1,9 +1,12 @@
 /*style.css*/
 
+.container {
+  display: grid;
+}
 
-div {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+h1 {
+    font-family: Helvetica, sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    color: #c8c8c8;
+}
