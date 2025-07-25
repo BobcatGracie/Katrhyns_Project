@@ -1,12 +1,69 @@
 /*style.css*/
 
-.container {
-  display: grid;
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
 }
 
-h1 {
-    font-family: Helvetica, sans-serif;
-    margin: 20px;
-    background-color: #ffffff;
-    color: #c8c8c8;
+/*HEADER*/
+header {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    display: flex;
+    height: 96px;
+    padding: 10px 10px 0px 40px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+header h1 {
+    color: #252525;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rectangle {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 40px;
+    background-color: #383838;
+    left: 0;
+}
+
+/*CONTAINER FOR TWO COLUMNS*/
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    gap: 40px;
+    position: relative;
+}
+
+
+/*LEFT COLUMN*/
+.left-column {
+    flex: 0 0 250px;
+}
+
+/*RIGHT COLUMN*/
+.right-column {
+    flex: 1;
+}
+
+/*DIVIDER*/
+.content-container::after {
+    content: '';
+    display: block;
+    width: 2px;
+    background-color: #252525;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(250px + 20px);
 }
