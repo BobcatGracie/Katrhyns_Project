@@ -8,12 +8,9 @@ body {
 /*HEADER*/
 header {
     background-color: white;
-    display: flex;
     width: 100%;
-    display: flex;
     height: 96px;
     padding: 10px 10px 0px 40px;
-    align-items: center;
     gap: 10px;
     align-self: stretch;
 }
@@ -67,3 +64,47 @@ header h1 {
     bottom: 0;
     left: calc(250px + 20px);
 }
+
+/*FORM CSS FOR SETTING BUDGET*/
+/*I GOT THIS WITH GOOGLE GEMINI*/
+#setting-budget form {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    gap: 10px; /* 10px space between items */
+    /* Add padding to the form itself if you want space between the form content and section edge */
+    /* padding: 10px 0; */
+}
+
+#setting-budget form label {
+    display: block; /* Ensures label takes its own line */
+    margin: 0; /* Reset any default margins */
+    font-weight: bold; /* Keep your label style */
+    color: #555; /* Keep your label color */
+}
+
+
+#setting-budget form input[type="number"] {
+    /* I had to hardcode the width */
+    width: 187px; /* Makes it take 100% of the form's available width */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Crucial: includes padding/border in the width calculation */
+    margin: 0; /* Reset any default margins */
+}
+
+#setting-budget form input[type="submit"] {
+    /* Had to hardcode the width */
+    width: 187px; /* Makes it take 100% of the form's available width */
+    background-color: #1d51a9;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0; /* Reset any default margins */
+}
+
+#setting-budget form input[type="submit"]:hover {
+    background-color: #0b2b63;
