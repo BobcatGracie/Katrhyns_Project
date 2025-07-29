@@ -1,9 +1,8 @@
 ________________________________________________________________________________
 #####TO DO####
-#Troubleshoot why Business Establishment isnt loading on server
 #general spellcheck
 #Take away time on transaction list
-
+#Fix random line appearing on page
 
 
 ________________________________________________________________________________
@@ -22,3 +21,4 @@ ________________________________________________________________________________
 #See why Catagories is returning as "yes" for new transactions
 #Change plot to show current balamce instead of purchase amount
 #Troubleshoot Date not working
+#Troubleshoot why Business Establishment isnt loading on server

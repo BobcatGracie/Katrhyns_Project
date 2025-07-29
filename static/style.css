@@ -108,7 +108,7 @@ header h1 {
 }
 
 /*FORM CSS FOR NEW TRANSACTIONS*/
-/*COPIED FROM PREVIOUS STEPS*/
+/*COPIED FROM PREVIOUS STEPS AND USED GOOGLE GEMINI*/
 #new-transaction form {
     display: flex;
     flex-direction: row; /* Keep items in a row */
