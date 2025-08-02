@@ -3,7 +3,7 @@ ________________________________________________________________________________
 #general spellcheck
 #Take away time on transaction list
 #Fix random line appearing on page
-
+#troubleshoot the date not working properly
 
 ________________________________________________________________________________
 ###COMPLETED###

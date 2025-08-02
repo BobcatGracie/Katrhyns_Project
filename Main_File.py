@@ -1,3 +1,4 @@
+import time
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -77,7 +78,7 @@ class AccountManager:
 
         #'Date' column is in datetime format for correct chronological plotting.
         try:
-            self.df['Date'] = pd.to_datetime(self.df['Date'])
+            self.df['Date'] = pd.to_datetime(self.df['Date'], format='mixed', errors='coerce')
         except Exception as e:
             print(f"Error converting 'Date' column to datetime: {e}")
             # Handles cases where date conversion fails (e.g., malformed dates)
@@ -134,14 +135,18 @@ def index():
     budget_amount_str = request.args.get('budget_amount')
     budget_amount = None
     if budget_amount_str:
-        try:
-            budget_amount = float(budget_amount_str)
-        except ValueError:
-            print("Invalid budget amount recieved")
+        if budget_amount_str:
+            try:
+                budget_amount = float(budget_amount_str)
+            except ValueError:
+                print("Invalid budget amount recieved")
 
+    #This should create a new file name for our png, and update with each budget update. 
     plot_path = accman.plot(budget_amount=budget_amount)
+    plot_cache_url = f"{plot_path}?timestamp={time.time()}"
+
     transactions = accman.get_activity()
-    html_str = render_template('index.html', title="Landing Page", plot_url=plot_path, balance=current_balance, transactions=transactions, budget_amount=budget_amount) # title will be inlined in {{ title }}
+    html_str = render_template('index.html', title="Landing Page", plot_url=plot_cache_url, balance=current_balance, transactions=transactions, budget_amount=budget_amount) # title will be inlined in {{ title }}
     print(html_str) # DEBUG
     return html_str  # give it to the browser to display the inline page
 
