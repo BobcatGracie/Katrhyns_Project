@@ -1,9 +1,8 @@
 ________________________________________________________________________________
 #####TO DO####
-#general spellcheck
 #Take away time on transaction list
-#Fix random line appearing on page
-#troubleshoot the date not working properly
+
+
 
 ________________________________________________________________________________
 ###COMPLETED###
@@ -22,3 +21,6 @@ ________________________________________________________________________________
 #Change plot to show current balamce instead of purchase amount
 #Troubleshoot Date not working
 #Troubleshoot why Business Establishment isnt loading on server
+#troubleshoot the date not working properly
+#Fix random line appearing on page
+#general spellcheck

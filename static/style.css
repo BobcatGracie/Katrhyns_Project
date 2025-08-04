@@ -51,10 +51,13 @@ header h1 {
 /*RIGHT COLUMN*/
 .right-column {
     flex: 1;
+    border: 2px solid #383838;
+    padding: 20px;
+    border-radius: 12px;
 }
 
 /*DIVIDER*/
-.content-container::after {
+/*.content-container::after {
     content: '';
     display: block;
     width: 2px;
@@ -62,7 +65,7 @@ header h1 {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: calc(250px + 20px);
+    left: 270px;
 }
 
 /*FORM CSS FOR SETTING BUDGET*/
