@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
 </head>
 <body>
+
+    <!-- Header which shows the current balance at the top of the page -->
         <header>
             <h1>Current Balance: ${{ "%.2f" | format(balance) }}</h1>
         </header>
+
+        <!-- This reactangle is bad HTML and should probably be changed as well as the CSS, but it works fine for now -->
         <div class="rectangle"></div>
     <main>
+
+        <!-- Divides the main content in a two column format -->
         <div class="content-container">
+
+            <!-- Left Column, can definitley add more in this column -->
             <section id="setting-budget" class="left-column">
                 <h2>Set Your Budget</h2>
                 <form action="/" method="get">
@@ -23,8 +31,11 @@
                 </form>
             </section>
 
+            <!-- Right Column -->
             <div class="right-column">
                 <div class="content-container">
+
+                    <!-- Adds a account activety which links to the py file def, add_activety -->
                     <section id="new-transaction">
                         <h2>Add a New Transaction</h2>
                             <form action="/add_transaction" method="post">
@@ -66,11 +77,14 @@
                             </form>
                     </section>
                 </div>
+
+                <!-- Plot.png that updates the balance over time. If there is a bug in py file, def plot, the image will not show -->
                 <section id="balance-over-time">
                     <h2>Balance Over Time</h2>
                     <img src="{{ plot_url }}" alt="Balance Over Time Plot">
                 </section>
 
+                <!-- Shows users thair transaction history -->
                 <section id="account-activity">
                     <h2>Account Activity</h2>
                     <p>Recorded Transactions:</p>

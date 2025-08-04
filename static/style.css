@@ -56,18 +56,6 @@ header h1 {
     border-radius: 12px;
 }
 
-/*DIVIDER*/
-/*.content-container::after {
-    content: '';
-    display: block;
-    width: 2px;
-    background-color: #252525;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 270px;
-}
-
 /*FORM CSS FOR SETTING BUDGET*/
 /*I GOT THIS WITH GOOGLE GEMINI*/
 #setting-budget form {
@@ -84,7 +72,7 @@ header h1 {
 }
 
 #setting-budget form input[type="number"] {
-    /* I had to hardcode the width */
+    /* I had to hardcode the width, so there definetly is a better way to update this */
     width: 187px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -103,11 +91,7 @@ header h1 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin: 0; /* Reset any default margins */
-}
-
-#setting-budget form input[type="submit"]:hover {
-    background-color: #0b2b63;
+    margin: 0; /*
 }
 
 /*FORM CSS FOR NEW TRANSACTIONS*/
@@ -118,7 +102,6 @@ header h1 {
     align-items: center; /* VERTICALLY ALIGN CENTERS OF FLEX ITEMS */
     flex-wrap: wrap; /* Allows items to wrap to the next line if space runs out */
     gap: 10px; /* 10px space between each wrapped item */
-    /* Add some padding around the form content if needed */
     padding: 10px 0;
 }
 

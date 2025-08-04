@@ -1,6 +1,7 @@
 ________________________________________________________________________________
 #####TO DO####
 #Take away time on transaction list
+#Impliment Better CSS
 
 
 
