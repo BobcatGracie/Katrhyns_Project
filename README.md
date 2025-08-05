@@ -4,13 +4,13 @@ Credit Card Budgeting Application
 ## Installation and Libraries
 This application only supports python3!
 You will need these standadrd packages to run the main.py
-To install them, type this into your console:
-pip -r requirements.txt
+Most are imported within Pythons library other than matplotlib and flask.
 
-time
-os
-pandas as pd>=2.2.3
-matplotlib.pyplot as plt
+time</br>
+os</br>
+pandas as pd</br>
+flask</br>
+matplotlib.pyplot as plt</br>
 
 ## Dates
 Different date formats have been accounted for and managed in the Class Account Manager, under the plot def.
