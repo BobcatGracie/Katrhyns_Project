@@ -16,4 +16,6 @@ Date,Business Establishment,Amount,Type,Category
 2025-03-08 00:00:00,MARATHON,12.93,Purchase,Transportation
 2025-03-08 00:00:00,PAYPAL*EBAY,63.86,Purchase,Miscellaneous
 2025-03-08 00:00:00,UberEats,10.0,Purchase,Bills
-2025-04-09,Depop,27.99,Purchase,Miscellaneous
+2025-04-09 00:00:00,Depop,27.99,Purchase,Miscellaneous
+2025-08-05 00:00:00,Target,30.42,Purchase,Miscellaneous
+2025-08-05,Target,30.42,Refund,Miscellaneous

@@ -90,7 +90,7 @@ class AccountManager:
         # Add a new column for the balance change for each transaction
         # Purchase amounts are positive, Refunds are negative
         plot_df['Change'] = plot_df.apply(
-            lambda row: +row['Amount'] if row['Type'] == 'Purchase' else row['Amount'],
+            lambda row: +row['Amount'] if row['Type'] == 'Purchase' else -row['Amount'],
             axis=1
         )
         #Calculate cumulative sum and add initial balance
