@@ -1,0 +1,12 @@
+#You will need these standard packages to run the main.py
+# Most are imported within Python's library, other than matplotlib and flask.
+# To install them, type this into your console:
+# pip -r requirements.txt
+
+pandas>=
+flask>=
+matplotlib>=
+
+# to find out what versions you have installed use pip list
+# pip list
+# Or: pip list > piplist.txt and open the file in a text editor
