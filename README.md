@@ -25,6 +25,9 @@ After downloading the repo, run the application locally on your computer by goin
 After the terminal reads the code, click on the local host.
 <img width="2617" height="503" alt="Screenshot 2025-08-04 163743" src="https://github.com/user-attachments/assets/a659b918-a98c-4b07-a9de-0f6fa456c117" />
 
+Here is the csv file we are currently working with.
+<img width="1324" height="981" alt="Screenshot 2025-08-06 164929" src="https://github.com/user-attachments/assets/c0fbf9f1-3ca8-44a0-aaa5-fa38b83ca6f1" />
+
 
 After a few seconds, the webpage will appear. Here you can add a purchase, which will update the plot, update your target budget, and see your transaction history
 ![Stand alone we app](https://github.com/user-attachments/assets/67c58001-f832-4c5d-ac08-2cd51c220098)
