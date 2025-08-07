@@ -1,17 +1,6 @@
 # Kathryns_Project
 Credit Card Budgeting Application
 
-## Installation and Libraries
-This application only supports python3!
-You will need these standard packages to run the main.py
-Most are imported within Python's library, other than matplotlib and flask.
-
-time</br>
-os</br>
-pandas as pd</br>
-flask</br>
-matplotlib.pyplot as plt</br>
-
 ## Dates
 Different date formats have been accounted for and managed in the Class Account Manager, under the plot def.
 
